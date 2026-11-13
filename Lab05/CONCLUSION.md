@@ -21,7 +21,7 @@ Give the numbers before -> after for that layer (correct / wrong / no answer, ou
 whether it changed what the agent *can do* or only what it *admits*. If no layer changed the
 number of correct answers, say so and explain what the layers did change instead.
 
-(write here)
+(Layer 1 brought the most significant change: 16/4/4 to 18/6/0. The "no answer" outcome disappeared-the agent now always provides a response, though some of these responses are incorrect (the number of "wrong" answers increased from 4 to 6) in other words, it didnt fix the reasoning process; instead, it gave the agent an opportunity to be wrong rather than failing to respond at all. Layer 2 resulted in no changes (18/6/0 = 18/6/0))
 
 ## 2. One failure the full harness did not fix
 
@@ -30,7 +30,7 @@ Pick one question that the full harness (layer 3) still gets wrong or refuses. G
 the model do instead? Name one thing you would add to the harness, and what it would cost
 (extra model calls, tokens, time, or a new way to fail).
 
-(write here)
+(q18. The model arrived at the correct figures (16.1%, 10.6%) but then unnecessarily divided the difference by 100, resulting in 0.55 instead of 5.5. The grounding mechanism rejected the output, and the model repeated the same error-leading to an "UNVERIFIED" status. I would consider adding a unit-of-measurement check to the calculate function (e.g., ensuring percentage points are not divided by 100); however, this would entail an additional verification round, consume extra tokens, and increase the risk of false positives for questions involving growth rates.)
 
 ## 3. Workflow or agent for the monthly ranking?
 
@@ -39,7 +39,7 @@ indicator in one year". Would you ship the fixed workflow or the agent? Use the 
 number of model calls, the tokens and the time you measured in Part 1. Then say in one sentence
 what kind of question would make you choose the other one.
 
-(write here)
+(Workflow is more accurate (13/15 vs. 9/15 for the fixed version) and about 5x cheaper in terms of tokens; it is, in fact, the ideal profile for this task. I would choose "Agent" for multi-step arithmetic or for handling non-standard region names (Workflow tended to fail on q21/q22).)
 
 ---
 
